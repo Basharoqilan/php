@@ -31,57 +31,20 @@ echo"<br>";
 echo "Q3)";
 echo " ";
 echo "<br>";
-
+$row=5;
 for ($i = 0 ; $i<5 ; $i++)
 {
-echo 'A';
-}
-
-echo "<br>";
-
-for ($i = 0 ; $i<5 ; $i++)
-{
-    if($i<3)
+    for($j=0;$j<5;$j++)
     {
-        echo 'A';
-
-    }else{
-        echo 'B';
-
+        if($j< $row-$i-1)
+        {
+            echo 'A';
+        }else
+        {
+            echo chr(65+$i);
+        }
     }
-}
-
-echo "<br>";
-
-for ($i = 0 ; $i<5 ; $i++)
-{
-    if($i<2)
-    {
-        echo 'A';
-
-    }else{
-        echo 'C';
-
-    }
-}
-echo "<br>";
-
-for ($i = 0 ; $i<5 ; $i++)
-{
-    if($i<1)
-    {
-        echo 'A';
-
-    }else{
-        echo 'D';
-
-    }
-}
-echo "<br>";
-
-for ($i = 0 ; $i<5 ; $i++)
-{
-  echo 'C';
+    echo "<br>";
 }
 echo"<br>";
 echo"<br>";
@@ -92,60 +55,25 @@ echo"<br>";
 
 
 <?php
+
 echo "Q4)";
 echo " ";
 echo "<br>";
 
+$row=5;
 for ($i = 0 ; $i<5 ; $i++)
 {
-echo '1';
-}
-
-echo "<br>";
-
-for ($i = 0 ; $i<5 ; $i++)
-{
-    if($i<3)
+    for($j=0;$j<5;$j++)
     {
-        echo '1';
-
-    }else{
-        echo '2';
-
+        if($j< $row-$i-1)
+        {
+            echo '1';
+        }else
+        {
+            echo (1+$i);
+        }
     }
-}
-
-echo "<br>";
-
-for ($i = 0 ; $i<5 ; $i++)
-{
-    if($i<2)
-    {
-        echo '1';
-
-    }else{
-        echo '3';
-
-    }
-}
-echo "<br>";
-
-for ($i = 0 ; $i<5 ; $i++)
-{
-    if($i<1)
-    {
-        echo '1';
-
-    }else{
-        echo '4';
-
-    }
-}
-echo "<br>";
-
-for ($i = 0 ; $i<5 ; $i++)
-{
-  echo '5';
+    echo "<br>";
 }
 echo"<br>";
 echo"<br>";
@@ -158,72 +86,19 @@ echo"<br>";
 echo "Q5)";
 echo " ";
 echo "<br>";
-
-for ($i = 0 ; $i<5 ; $i++)
+for ($i = 1; $i<6 ; $i++)
 {
-    if($i==0)
+    for($j=1;$j<6;$j++)
     {
-        echo '1';
-
-    }else
-    {
-        echo '0';
-
+        if($j===$i)
+        {
+            echo $i;
+        }else
+        {
+            echo '0';
+        }
     }
-}
-
-echo "<br>";
-
-for ($i = 0 ; $i<5 ; $i++)
-{
-    if($i==1)
-    {
-        echo '2';
-
-    }else{
-        echo '0';
-
-    }
-}
-
-echo "<br>";
-
-for ($i = 0 ; $i<5 ; $i++)
-{
-    if($i==2)
-    {
-        echo '3';
-
-    }else{
-        echo '0';
-
-    }
-}
-echo "<br>";
-
-for ($i = 0 ; $i<5 ; $i++)
-{
-    if($i==3)
-    {
-        echo '4';
-
-    }else{
-        echo '0';
-
-    }
-}
-echo "<br>";
-
-for ($i = 0 ; $i<5 ; $i++)
-{
-    if($i==4)
-    {
-        echo '5';
-
-    }else{
-        echo '0';
-
-    }
+    echo "<br>";
 }
 echo"<br>";
 echo"<br>";
@@ -333,181 +208,91 @@ echo "<br>";
 echo "Q11)";
 echo " ";
 echo "<br>";
-
-for ($i = 1; $i <= 15; $i++) {
-    if ($i ==1) {
-        echo $i;
+$number = 1;
+for ($i = 1; $i <= 5; $i++) {
+ for ($j = 1; $j <= 5; $j++ )
+ {
+    if($j<=$i)
+    {
+        echo $number;
+        echo " ";
+        $number++;
+    }else
+    {
+        echo " ";
         
+    }
+ }
+ echo "<br>";
+}
+
+echo "<br>";
+echo "<br>";
+?>
+
+
+<?php 
+
+    echo "<br><br><br>Q12<br><br>";
+
+
+    $letters = range('A', 'E'); 
+    $maxRows = 5; 
+
+    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;A <br>";
+    for ($i = 2; $i <= $maxRows; $i++) {
+
+        for ($j = $maxRows - $i; $j > 0; $j--) {
+            echo "&nbsp;&nbsp;&nbsp;&nbsp;"; 
+        }
+
+        for ($j = 0; $j < $i; $j++) {
+            echo $letters[$j] . "&nbsp;&nbsp;&nbsp;&nbsp;"; 
+        }
         echo "<br>";
-    } else if ($i >= 2 && $i <= 3) {
-        echo $i;
-        echo " ";
-
-        if ($i==3)
-        {
-            echo "<br>";
-
-        }
-    } else if ($i >= 4 && $i <= 6) {
-        echo $i;
-        echo " ";
-
-        if ($i==6)
-        {
-            echo "<br>";
-
-        }
-    } else if ($i >= 7 && $i <= 10) {
-        echo $i;
-        echo " ";
-
-        if ($i==10)
-        {
-            echo "<br>";
-
-        }
     }
-    else if ($i >= 11 && $i <= 15) {
-        echo $i;
-        echo " ";
 
-        if ($i==16)
-        {
-            echo "<br>";
+    for ($i = $maxRows - 1; $i > 1; $i--) {
 
+        for ($j = $maxRows - $i; $j > 0; $j--) {
+            echo "&nbsp;&nbsp;&nbsp;&nbsp;"; 
         }
+
+        for ($j = 0; $j < $i; $j++) {
+            echo $letters[$j] . "&nbsp;&nbsp;&nbsp;&nbsp;"; 
+        }
+        echo "<br>";
     }
-}
-
-echo "<br>";
-echo "<br>";
-?>
-
-
-<?php
-echo "Q12)";
-echo "<br>";
-$arr = ["A","B","C","D","E"];
-for ($i = 1; $i <= 8; $i++) {
-if ($i == 1 )
-{
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-    echo $arr[0];
-    echo $arr[0];
     echo "<br>";
-}else if ($i == 2)
-{
-    echo "&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-    echo $arr[0];
-    echo " &nbsp;";
-    echo $arr[1];
     echo "<br>";
-
-
-}
-else if ($i == 3)
-{
-    echo "&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-    echo $arr[0];
-    echo " &nbsp;";
-    echo $arr[1];
-    echo " &nbsp;";
-    echo $arr[2];
-    echo "<br>";
-
-
-}
-else if ($i == 4)
-{   
-     echo " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-    echo $arr[0];
-    echo " &nbsp;";
-    echo $arr[1];
-    echo " &nbsp;";
-    echo $arr[2];
-    echo " &nbsp;";
-    echo $arr[3];
-    echo "<br>";
-
-}
-else if ($i == 5)
-{   
-     echo " &nbsp;&nbsp;&nbsp;&nbsp;";
-    echo $arr[0];
-    echo " &nbsp;";
-    echo $arr[1];
-    echo " &nbsp;";
-    echo $arr[2];
-    echo " &nbsp;";
-    echo $arr[3];
-    echo " &nbsp;";
-    echo $arr[4];
-    echo "<br>";
-
-}
-else if ($i == 6)
-{   
-     echo " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-    echo $arr[0];
-    echo " &nbsp;";
-    echo $arr[1];
-    echo " &nbsp;";
-    echo $arr[2];
-    echo " &nbsp;";
-    echo $arr[3];
-    echo "<br>";
-
-}
-else if ($i == 7)
-{
-    echo "&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-    echo $arr[0];
-    echo " &nbsp;";
-    echo $arr[1];
-    echo " &nbsp;";
-    echo $arr[2];
-    echo "<br>";
-
-
-}
-else if ($i == 8)
-{
-    echo "&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-    echo $arr[0];
-    echo " &nbsp;";
-    echo $arr[1];
-    echo "<br>";
-
-
-}
-}
-
-echo "<br>";
-echo "<br>";
 ?>
 
 
 
 <?php
-/*function*/
-echo "Q1)";
+echo "Q1) ";
 echo " ";
-$x = 3;
-function prime_number ($x)
-{
-if(  $x % 2 != 0)
-{
-    echo "$x is aprime number";
-}else
-{
-    echo "$x is aprime number";
+$x = 49;
+function prime_number($x) {
+    if ($x < 2) {
+        echo "$x is not a prime number";
+        return;
+    }
 
+    for ($i = 2; $i <= sqrt($x); $i++) {
+        if ($x % $i == 0) {
+            echo "$x is not a prime number";
+            return;
+        }
+    }
+    echo "$x is a prime number";
 }
-}
-prime_number ($x);
-    echo "<br>";
-    echo "<br>";
+
+prime_number($x);
+echo "<br>";
+echo "<br>";
 ?>
+
 
 
 <?php
