@@ -26,12 +26,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate Phone Number
     if (empty(trim($_POST["Phone_number"]))) {
-        $Phone_number_err = "Please enter a Phone number.";
-    } elseif (strlen(trim($_POST["Phone_number"])) != 10) {
-        $Phone_number_err = "Phone number must have exactly 10 characters.";
+        $phone_number_err = "Please enter a phone number.";
     } else {
-        $Phone_number = trim($_POST["Phone_number"]);
+        $phone_number = trim($_POST["Phone_number"]);
+        if (strlen($phone_number) !== 10) {
+            $phone_number_err = "Phone number must have exactly 10 characters.";
+        } elseif (substr($phone_number, 0, 2) !== "07") {
+            $phone_number_err = "Phone number must start with '07'.";
+        }
     }
+
 
     // Validate Name
     if (empty(trim($_POST["Name"]))) {
@@ -206,13 +210,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 isValid = false;
             }
 
-            // Validate Phone Number
             const phoneNumber = document.getElementById("Phone_number").value.trim();
             if (phoneNumber === "") {
-                document.getElementById("Phone_number_err").textContent = "Please enter a Phone number.";
+                document.getElementById("Phone_number_err").textContent = "Please enter a phone number.";
                 isValid = false;
             } else if (phoneNumber.length !== 10) {
                 document.getElementById("Phone_number_err").textContent = "Phone number must have exactly 10 characters.";
+                isValid = false;
+            } else if (!phoneNumber.startsWith("07")) {
+                document.getElementById("Phone_number_err").textContent = "Phone number must start with '07'.";
                 isValid = false;
             }
 
@@ -228,14 +234,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             // Validate Password
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])(?!.*\s).{8,}$/;
             const password = document.getElementById("password").value.trim();
             if (password === "") {
-                document.getElementById("password_err").textContent = "Please enter a password.";
-                isValid = false;
-            } else if (password.length < 8) {
-                document.getElementById("password_err").textContent = "Password must have at least 8 characters.";
-                isValid = false;
-            }
+    password_err.textContent = "Please enter a password.";
+    isValid = false;
+} else if (!passwordPattern.test(password)) {
+    password_err.textContent = "Password must have at least 8 characters, including an uppercase letter, a lowercase letter, a number, a special character, and no spaces.";
+    isValid = false;
+} else {
+    password_err.textContent = "";
+}
 
             // Validate Confirm Password
             const confirmPassword = document.getElementById("confirm_password").value.trim();
