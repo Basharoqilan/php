@@ -39,7 +39,7 @@
     <h1>Hello There!</h1>
     <h3 class = "h3">We are glad to have you here </h3>
     <br>
-<img src = "1.png" class = "img">
+<img src = "img/1.png" class = "img">
 <br>
     <a href="login.php" class="btn btn-primary btn-extra-lg">Login</a>
     <br>
