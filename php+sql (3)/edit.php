@@ -44,17 +44,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $Name = $con->real_escape_string($_POST["Name"]);
     $password = $_POST["password"];
     $confirm_password = $_POST["confirm_password"];
+    
+    if (isset($_FILES["User_image"]) && $_FILES["User_image"]["error"] == 0) {
+        $target_dir = "img/";
+        $target_file = $target_dir . basename($_FILES["User_image"]["name"]);
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-    if (empty($Email) || empty($Phone_number) || empty($Name) || empty($password) || empty($confirm_password)) {
+        $allowed_types = array("jpg", "jpeg", "png", "gif");
+        if (!in_array($imageFileType, $allowed_types)) {
+            $errorMessage = "Only JPG, JPEG, PNG & GIF files are allowed.";
+        } else {
+            if (move_uploaded_file($_FILES["User_image"]["tmp_name"], $target_file)) {
+                $User_image = $target_file;
+            } else {
+                $errorMessage = "Sorry, there was an error uploading your file.";
+            }
+        }
+    } else {
+        $User_image = $row["User_image"];
+    }
+
+    if (empty($Email) || empty($Phone_number) || empty($Name) || empty($password) || empty($confirm_password) || empty($User_image)) {
         $errorMessage = "All fields are required";
     } elseif ($password !== $confirm_password) {
         $errorMessage = "Passwords do not match";
     } else {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        $sql = "UPDATE superuser SET Email = ?, Phone_number = ?, Name = ?, password = ? WHERE id = ?";
+        $sql = "UPDATE superuser SET Email = ?, Phone_number = ?, Name = ?, password = ?, User_image = ? WHERE id = ?";
         $stmt = $con->prepare($sql);
-        $stmt->bind_param('ssssi', $Email, $Phone_number, $Name, $hashed_password, $id);
+        $stmt->bind_param('sssssi', $Email, $Phone_number, $Name, $hashed_password, $User_image, $id);
 
         if ($stmt->execute()) {
             $successMessage = "Client updated correctly";
@@ -97,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
     ?>
 
-    <form method="post"> 
+    <form method="post" enctype="multipart/form-data"> 
         <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label">Email</label>
@@ -133,6 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             <label class="col-sm-3 col-form-label">User Image</label>
             <div class="col-sm-6">
                 <input type="file" class="form-control" name="User_image">
+               
             </div>
         </div>
         <div class="row mb-3">
